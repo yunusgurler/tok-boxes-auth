@@ -1,0 +1,20 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Redirecting…</title>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    if (code) {
+      // This opens your RN app using deep link
+      window.location.href = `cara://auth?code=${code}`;
+    } else {
+      document.write("No auth code found");
+    }
+  </script>
+</head>
+<body>
+  Redirecting…
+</body>
+</html>
