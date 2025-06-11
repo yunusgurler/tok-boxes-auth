@@ -1,20 +1,24 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Redirecting…</title>
+  <meta charset="UTF-8">
+  <title>TikTok Auth Redirect</title>
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get('code');
-    if (code) {
-      // This opens your RN app using deep link
-      window.location.href = `cara://auth?code=${code}`;
-    } else {
-      document.write("No auth code found");
-    }
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const code  = params.get('code');
+      const state = params.get('state');
+      // TODO: verify state matches what your app sent
+      if (code) {
+        // Send the code back to your app by deep‐linking:
+        window.location = `tokbox://auth?code=${code}`;
+      } else {
+        document.body.innerText = 'No code received.';
+      }
+    })();
   </script>
 </head>
 <body>
-  Redirecting…
+  Redirecting back to the app…
 </body>
 </html>
